@@ -64,10 +64,13 @@ function App() {
     
     const bins = Array.from({ length: binCount }, (_, i) => {
       const start = min + i * binWidth;
+      const binLabel = start >= 10000000 
+        ? `₹${(start / 10000000).toFixed(1)}Cr` 
+        : `₹${(start / 100000).toFixed(0)}L`;
       return {
         binStart: start,
         binEnd: start + binWidth,
-        name: `$${(start / 1000000).toFixed(1)}M`,
+        name: binLabel,
         count: 0
       };
     });
@@ -91,9 +94,9 @@ function App() {
 
   // --- Custom Tooltip formatter for Price ---
   const formatCurrency = (val) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IN', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'INR',
       maximumFractionDigits: 0
     }).format(val);
   };
@@ -266,7 +269,11 @@ function App() {
                             dataKey="price" 
                             name="Price" 
                             domain={[0, stats.maxPrice + 1000000]}
-                            tickFormatter={(v) => `$${(v / 1000000).toFixed(1)}M`}
+                            tickFormatter={(v) => {
+                              if (v >= 10000000) return `₹${(v / 10000000).toFixed(1)}Cr`;
+                              if (v >= 100000) return `₹${(v / 100000).toFixed(0)}L`;
+                              return `₹${v}`;
+                            }}
                             tick={{ fontSize: 11 }}
                           />
                           <Tooltip 
@@ -376,7 +383,16 @@ function App() {
                       <ResponsiveContainer>
                         <BarChart data={weightsData} layout="vertical" margin={{ top: 10, right: 20, left: 20, bottom: 5 }}>
                           <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                          <XAxis type="number" tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`} tick={{ fontSize: 10 }} />
+                          <XAxis 
+                            type="number" 
+                            tickFormatter={(v) => {
+                              const sign = v < 0 ? '-' : '';
+                              const absV = Math.abs(v);
+                              if (absV >= 100000) return `${sign}₹${(absV / 100000).toFixed(1)}L`;
+                              return `${sign}₹${(absV / 1000).toFixed(0)}k`;
+                            }} 
+                            tick={{ fontSize: 10 }} 
+                          />
                           <YAxis dataKey="name" type="category" tick={{ fontSize: 11 }} />
                           <Tooltip formatter={(value) => [formatCurrency(value), 'Coeff Weight']} />
                           <Bar dataKey="weight" radius={[0, 4, 4, 0]}>
@@ -410,7 +426,11 @@ function App() {
                             dataKey="actual" 
                             name="Actual Price" 
                             domain={[0, 14000000]}
-                            tickFormatter={(v) => `$${(v / 1000000).toFixed(1)}M`}
+                            tickFormatter={(v) => {
+                              if (v >= 10000000) return `₹${(v / 10000000).toFixed(1)}Cr`;
+                              if (v >= 100000) return `₹${(v / 100000).toFixed(0)}L`;
+                              return `₹${v}`;
+                            }}
                             tick={{ fontSize: 11 }}
                           />
                           <YAxis 
@@ -418,7 +438,11 @@ function App() {
                             dataKey="predicted" 
                             name="Predicted Price" 
                             domain={[0, 14000000]}
-                            tickFormatter={(v) => `$${(v / 1000000).toFixed(1)}M`}
+                            tickFormatter={(v) => {
+                              if (v >= 10000000) return `₹${(v / 10000000).toFixed(1)}Cr`;
+                              if (v >= 100000) return `₹${(v / 100000).toFixed(0)}L`;
+                              return `₹${v}`;
+                            }}
                             tick={{ fontSize: 11 }}
                           />
                           <Tooltip formatter={(value) => [formatCurrency(value), 'Price']} />
@@ -455,16 +479,6 @@ function App() {
 
           </div>
 
-          {/* Cloud Deploy Action Bar */}
-          <div className="deploy-banner">
-            <div className="deploy-banner-text">
-              <h4>✨ Ready for Cloud Deployment?</h4>
-              <p>Compile static production assets and launch your site live onto global CDNs.</p>
-            </div>
-            <button className="deploy-button" onClick={() => setActiveTab('explorer')}>
-              🚀 View Market Data
-            </button>
-          </div>
         </main>
       </div>
     </div>

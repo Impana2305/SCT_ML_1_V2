@@ -2,7 +2,7 @@
 
 ### **SkillCraft Technology - Machine Learning Internship (Task 01)**
 
-This repository contains an end-to-end Machine Learning project to predict housing prices using multivariate Linear Regression. It includes a comprehensive Jupyter Notebook detailing the entire data science workflow, the cleaned housing dataset, and a premium React-based dashboard web application integrating the model for real-time client-side valuations.
+This repository contains an end-to-end Machine Learning project to predict housing prices in Indian Rupees (₹) using multivariate Linear Regression. It includes a comprehensive Jupyter Notebook detailing the entire data science workflow, the cleaned housing dataset, and a premium React-based dashboard web application integrating the model for real-time client-side valuations.
 
 ---
 
@@ -51,8 +51,8 @@ The model's performance on the unseen validation test set is summarized below:
 | Metric | Value | Description |
 | :--- | :---: | :--- |
 | **R-squared Score ($R^2$)** | **0.4551** | Explains 45.5% of variance in validation house prices. |
-| **Mean Absolute Error (MAE)** | **$1,180,967.16** | The average absolute dollar prediction deviation. |
-| **Root Mean Squared Error (RMSE)** | **$1,567,544.86** | Standard deviation of prediction residuals (penalizes large errors). |
+| **Mean Absolute Error (MAE)** | **₹1,180,967.16** | The average absolute Rupee prediction deviation (~₹11.8 Lakhs). |
+| **Root Mean Squared Error (RMSE)** | **₹1,567,544.86** | Standard deviation of prediction residuals (~₹15.7 Lakhs). |
 | **Mean Squared Error (MSE)** | **2,457,196,879,839.07** | Average squared difference between actual and predicted prices. |
 
 ---
@@ -73,8 +73,9 @@ The Jupyter Notebook embeds comprehensive seaborn and matplotlib charts represen
 
 To make the predictive model accessible, a beautiful **React & Vite web application** was built. 
 - Features glassmorphism panels, customized slider inputs, and dynamic charts using Recharts.
-- Performs client-side scaling and regression inference using the pre-computed JSON model weights, removing python server lag entirely.
+- Performs client-side Z-score scaling and regression inference using the pre-computed JSON model weights, removing python server lag entirely.
 - Includes three dedicated navigation panels: **Valuation Estimator**, **Market Explorer** (with data statistics and histogram), and **Diagnostics & Analytics** (featuring real-time Actual vs. Predicted scatter fits and feature coefficients).
+- Displays all prices formatted in the standard **Indian Rupee (₹)** numbering system (Lakhs and Crores).
 
 ---
 
