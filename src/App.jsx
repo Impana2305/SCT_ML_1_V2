@@ -356,14 +356,14 @@ function App() {
                   <div className="stats-row" style={{ gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '24px' }}>
                     <div className="stat-widget" style={{ textAlign: 'left', padding: '16px' }}>
                       <div className="stat-label" style={{ fontSize: '0.75rem' }}>R-squared Score (R²)</div>
-                      <div className="stat-value" style={{ fontSize: '1.6rem', color: 'var(--color-primary)' }}>0.6384</div>
+                      <div className="stat-value" style={{ fontSize: '1.6rem', color: 'var(--color-primary)' }}>{modelParams.r2.toFixed(4)}</div>
                       <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '4px' }}>
-                        Explains 63.8% of variance in market prices.
+                        Explains {(modelParams.r2 * 100).toFixed(1)}% of variance in market prices.
                       </p>
                     </div>
                     <div className="stat-widget" style={{ textAlign: 'left', padding: '16px' }}>
                       <div className="stat-label" style={{ fontSize: '0.75rem' }}>Mean Absolute Error (MAE)</div>
-                      <div className="stat-value" style={{ fontSize: '1.6rem', color: 'var(--color-primary)' }}>$812,042</div>
+                      <div className="stat-value" style={{ fontSize: '1.6rem', color: 'var(--color-primary)' }}>{formatCurrency(modelParams.mae)}</div>
                       <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '4px' }}>
                         Avg dollar price deviation in predictions.
                       </p>
@@ -409,7 +409,7 @@ function App() {
                             type="number" 
                             dataKey="actual" 
                             name="Actual Price" 
-                            domain={[0, 10000000]}
+                            domain={[0, 14000000]}
                             tickFormatter={(v) => `$${(v / 1000000).toFixed(1)}M`}
                             tick={{ fontSize: 11 }}
                           />
@@ -417,7 +417,7 @@ function App() {
                             type="number" 
                             dataKey="predicted" 
                             name="Predicted Price" 
-                            domain={[0, 10000000]}
+                            domain={[0, 14000000]}
                             tickFormatter={(v) => `$${(v / 1000000).toFixed(1)}M`}
                             tick={{ fontSize: 11 }}
                           />
@@ -441,7 +441,7 @@ function App() {
                             })
                           } fill="#3b82f6" opacity={0.6} />
                           {/* Ideal Line y=x */}
-                          <ReferenceLine segment={[{ x: 1000000, y: 1000000 }, { x: 8000000, y: 8000000 }]} stroke="#ef4444" strokeWidth={2} strokeDasharray="5 5" label={{ value: "Perfect Prediction (y=x)", position: "top", fill: "#ef4444", fontSize: 11 }} />
+                          <ReferenceLine segment={[{ x: 1000000, y: 1000000 }, { x: 13000000, y: 13000000 }]} stroke="#ef4444" strokeWidth={2} strokeDasharray="5 5" label={{ value: "Perfect Prediction (y=x)", position: "top", fill: "#ef4444", fontSize: 11 }} />
                         </ScatterChart>
                       </ResponsiveContainer>
                     </div>
