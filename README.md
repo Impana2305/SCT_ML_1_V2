@@ -29,7 +29,7 @@ The primary goal of this task is to construct a regression model that accurately
 ## 🛠️ Machine Learning Workflow
 
 The model was built using the following step-by-step pipeline in the Jupyter Notebook:
-1. **Data Collection & Load**: Loaded the raw real estate dataset (`Housing.csv`) and validated rows, shapes, and features.
+1. **Data Collection & Load**: Loaded the raw house price dataset (`Housing.csv`) and validated rows, shapes, and features.
 2. **Data Preprocessing & Cleaning**:
    - Checked and confirmed zero null values (`df.isnull().sum()`).
    - Performed outlier detection and cleaning using the **Interquartile Range (IQR)** method on the predictor variables (`area`, `bedrooms`, `bathrooms`) to prevent regression line skewing.
@@ -59,7 +59,7 @@ The model's performance on the unseen validation test set is summarized below:
 
 ## 📊 Project Visualizations & Insights
 
-The Jupyter Notebook embeds comprehensive seaborn and matplotlib charts representing key real estate findings:
+The Jupyter Notebook embeds comprehensive seaborn and matplotlib charts representing key house price findings:
 - **Price Distribution Histogram**: Visualizes the density distribution of prices across all market records.
 - **Feature Boxplots**: Shows the range and distribution of prices grouped by the bedroom and bathroom counts.
 - **Bivariate Scatter Plots**: Maps Area vs. Price, with color indicators showing the positive price trend of higher bedroom/bathroom counts.

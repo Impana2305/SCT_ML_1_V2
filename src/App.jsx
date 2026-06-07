@@ -106,7 +106,7 @@ function App() {
       {/* Header */}
       <header className="app-header">
         <h1 className="app-title">🏠 House Price Prediction</h1>
-        <p className="app-subtitle">A high-performance React application calculating real estate valuations and analyzing local dataset statistics.</p>
+        <p className="app-subtitle">A high-performance application calculating house price valuations and analyzing local dataset statistics.</p>
       </header>
 
       {/* Main Dashboard Layout */}
@@ -324,7 +324,7 @@ function App() {
                 </div>
 
                 <div className="chart-container">
-                  <div className="chart-title">Real Estate Market Valuation Distribution</div>
+                  <div className="chart-title">House Price Market Valuation Distribution</div>
                   <div style={{ width: '100%', height: 350 }}>
                     <ResponsiveContainer>
                       <BarChart data={priceHistogramData} margin={{ top: 10, right: 10, bottom: 20, left: 10 }}>

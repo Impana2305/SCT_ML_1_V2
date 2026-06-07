@@ -176,7 +176,7 @@ def load_and_train_model():
 
 # --- 3. App Header ---
 st.markdown('<h1 class="app-title">🏠 House Price Prediction</h1>', unsafe_allow_html=True)
-st.markdown('<p class="app-subtitle">An elegant, machine-learning-driven platform built to calculate real estate market value estimations with statistical precision.</p>', unsafe_allow_html=True)
+st.markdown('<p class="app-subtitle">An elegant, machine-learning-driven platform built to calculate house price market value estimations with statistical precision.</p>', unsafe_allow_html=True)
 
 try:
     model, scaler, df_clean, df_raw, metrics = load_and_train_model()
@@ -252,7 +252,7 @@ try:
                 <div class="glass-card">
                     <div class="valuation-label">Estimated Market Valuation</div>
                     <h1 class="valuation-price">${final_val:,.2f}</h1>
-                    <p class="valuation-desc">Valuation dynamically calculated using multivariate linear regression coefficients fit on local real estate records.</p>
+                    <p class="valuation-desc">Valuation dynamically calculated using multivariate linear regression coefficients fit on local house price records.</p>
                 </div>
             """, unsafe_allow_html=True)
             
